@@ -80,7 +80,8 @@ i, svg{
     color: white;
     font-size: 1rem;
     cursor: pointer;
-    transition: all 0.5 ease;   
+    transition: all 0.5 ease;
+    margin: 1rem;   
 }
 
 .pad{
@@ -101,4 +102,15 @@ i, svg{
 select{
     padding: 1rem;
     font-size: 1rem;
+    margin: 1rem;
+}
+
+/* create the animation */
+@keyframes playTrack{
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(1.2);
+    }
 }
