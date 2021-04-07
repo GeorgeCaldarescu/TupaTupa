@@ -32,16 +32,17 @@ i, svg{
     background: rgb(243, 207, 140);
 }
 
+/* when the pad are active change the color */
 .kick-pad.active{
     background: rgb(73, 73, 235);
 }
 
 .snare-pad.active{
-    background: rgb(70, 243, 84);
+    background: rgb(37, 175, 48);
 }
 
 .hihat-pad.active{
-    background: rgb(235, 180, 78);
+    background: rgb(255, 167, 3);
 }
 
 .sequencer{
