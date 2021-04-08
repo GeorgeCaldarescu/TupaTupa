@@ -13,6 +13,7 @@ class DrumKit{
         this.hihatAudio = document.querySelector('.hihat-sound');
         this.index = 0; // is the pad number 0, the pads are numbered from 0-7 and is usefull for the loop
         this.bpm = 150; // create the bpm
+        this.isPlaying = null;
     }
 
     // active pad
@@ -53,9 +54,16 @@ class DrumKit{
 
     start(){
         const interval = (60/this.bpm) * 1000; // times 1000 because the time is in ms
-        setInterval(() => {
+        // check if is playing
+        if (!this.isPlaying){
+        this.isPlaying = setInterval(() => {
             this.repeat();
-        }, interval )  //the time is in ms
+        }, interval);
+    } else {
+        // clear the interval and add the stop if play button is pressed once more
+        clearInterval(this.isPlaying);
+        this.isPlaying = null;
+    }
     }
 }
 
