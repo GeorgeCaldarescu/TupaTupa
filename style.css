@@ -105,6 +105,11 @@ select{
     margin: 1rem;
 }
 
+/* create the attribute for mute button when is active */
+.mute.active{
+    background: rgb(165, 164, 164);
+}
+
 /* create the animation */
 @keyframes playTrack{
     from{

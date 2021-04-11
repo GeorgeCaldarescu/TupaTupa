@@ -21,6 +21,9 @@ class DrumKit{
         
         // grab the selector to be able to change the sound
         this.selects = document.querySelectorAll('select');
+
+        // mute the sound
+        this.muteBtns = document.querySelectorAll('.mute');
     }
 
     // active pad
@@ -100,6 +103,38 @@ class DrumKit{
                 break;
         }   
     }
+
+    // create the function for mute
+    mute(e){
+        const muteIndex = e.target.getAttribute('data-track');  //the mute index is used to check wich track is active (check the html file)
+        e.target.classList.toggle('active');
+        // check if is clicked or not to be muted
+        if(e.target.classList.contains('active')){
+            switch(muteIndex){
+                case '0':
+                    this.kickAudio.volume = 0;
+                    break;
+                case '1':
+                    this.snareAudio.volume = 0;
+                    break;
+                case '2':
+                    this.hihatAudio.volume = 0;
+                    break;
+            }
+        } else{
+            switch(muteIndex){
+                case '0':
+                    this.kickAudio.volume = 1;
+                    break;
+                case '1':
+                    this.snareAudio.volume = 1;
+                    break;
+                case '2':
+                    this.hihatAudio.volume = 1;
+                    break;
+            }
+        }
+    }
 }
 
 
@@ -128,5 +163,12 @@ drumKit.selects.forEach(select => {
     select.addEventListener('change', function(e){
         drumKit.changeSound(e);
     });
+});
+
+// mute buttons
+drumKit.muteBtns.forEach(btn => {
+    btn.addEventListener('click', function(e){
+        drumKit.mute(e);
+    })
 });
  
