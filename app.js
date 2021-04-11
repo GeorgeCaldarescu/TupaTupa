@@ -6,7 +6,11 @@ class DrumKit{
 
         // the play button
         this.playBtn = document.querySelector('.play');
-
+        
+        // add the changing sound 
+        this.currentKick = './allSounds/kick-classic.wav';
+        this.currentSnare = './allSounds/snare-acoustic01.wav';
+        this.currentHihat = './allSounds/hihat-acoustic01.wav';
         // here it grab the audio from the hmtl file, to understand look for kick-sound 
         this.kickAudio = document.querySelector('.kick-sound');
         this.snareAudio = document.querySelector('.snare-sound');
@@ -14,6 +18,9 @@ class DrumKit{
         this.index = 0; // is the pad number 0, the pads are numbered from 0-7 and is usefull for the loop
         this.bpm = 150; // create the bpm
         this.isPlaying = null;
+        
+        // grab the selector to be able to change the sound
+        this.selects = document.querySelectorAll('select');
     }
 
     // active pad
@@ -75,12 +82,32 @@ class DrumKit{
             this.playBtn.classList.remove('active');
         }
     }
+    // create the change sound function
+    changeSound(e){
+        const selectionName = e.target.name;
+        const selectionValue = e.target.value;
+
+        // switch the tracks from the default to the one selected
+        switch(selectionName){
+            case 'kick-select':
+                this.kickAudio.src = selectionValue;
+                break;
+            case 'snare-select':
+                this.snareAudio.src = selectionValue;
+                break;
+            case 'hihat-select':
+                this.hihatAudio.src = selectionValue;
+                break;
+        }   
+    }
 }
 
 
 
 
 const drumKit = new DrumKit();
+
+// Event Listeners
 
 // change the color when become active
 drumKit.pads.forEach(pad =>{
@@ -95,5 +122,11 @@ drumKit.pads.forEach(pad =>{
 drumKit.playBtn.addEventListener('click', function(){
     drumKit.updateBtn();
     drumKit.start();
+});
+
+drumKit.selects.forEach(select => {
+    select.addEventListener('change', function(e){
+        drumKit.changeSound(e);
+    });
 });
  
